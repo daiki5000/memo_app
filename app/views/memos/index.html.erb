@@ -1,0 +1,9 @@
+<h1>メモ一覧</h1>
+
+<ul>
+  <% @memos.each do |memo| %>
+    <li><%= link_to memo.title, memo %>: <%= memo.content %></li>
+  <% end %>
+</ul>
+
+<%= link_to '新規作成する', new_memo_path %>
