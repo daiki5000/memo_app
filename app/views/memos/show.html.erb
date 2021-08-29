@@ -1,8 +1,15 @@
 <h1>タイトル（<%= @memo.title %>）のメモ詳細</h1>
 
-<p><%= @memo.title %></p>
-<p><%= @memo.content %></p>
+<table class="table table-bordered">
+  <tr>
+    <th>タイトル</th>
+    <td><%= @memo.title %></td>
+  </tr>
+  <tr>
+    <th>内容</th>
+    <td><%= @memo.content %></td>
+  </tr>
+</table>
 
-<%= link_to '編集する', edit_memo_path(@memo) %>
-<%= link_to '一覧に戻る', memos_path %>
-<%= link_to '削除する', @memo, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+<%= link_to '編集する', edit_memo_path(@memo), class: "btn btn-outline-success" %>
+<%= link_to '削除する', @memo, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: "btn btn-outline-danger" %>
