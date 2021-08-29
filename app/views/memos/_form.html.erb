@@ -1,0 +1,18 @@
+<%= form_with(model: memo, local: true) do |form| %>
+  <% if memo.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% memo.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.label :title, 'タイトル' %>
+  <%= form.text_field :title %>
+  <%= form.label :content, '内容' %>
+  <%= form.text_field :content %>
+  
+  <%= form.submit '作成' %>
+<% end %>

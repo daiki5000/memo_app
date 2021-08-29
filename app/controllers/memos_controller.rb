@@ -1,10 +1,11 @@
 class MemosController < ApplicationController
+  before_action :set_memo, only: [:show, :edit, :update, :destroy]
+  
   def index
-    @memos = Memo.all
+    @memos = Memo.all.page(params[:page]).per(10)
   end
   
   def show
-    @memo = Memo.find(params[:id])
   end
   
   def new
@@ -23,11 +24,9 @@ class MemosController < ApplicationController
   end
   
   def edit
-    @memo = Memo.find(params[:id])
   end
   
   def update
-    @memo = Memo.find(params[:id])
     if @memo.update(memo_params)
       flash[:success] = 'メモを更新しました'
       redirect_to @memo
@@ -38,13 +37,16 @@ class MemosController < ApplicationController
   end
   
   def destroy
-    @memo = Memo.find(params[:id])
     @memo.destroy
     flash[:success] = 'メモを削除しました'
     redirect_to memos_url
   end
   
   private
+  
+  def set_memo
+    @memo = Memo.find(params[:id])
+  end
   
   def memo_params
     params.require(:memo).permit(:title, :content)
